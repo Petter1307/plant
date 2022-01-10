@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantonizer/classes/plant_class.dart';
 
 class PlantContainer extends StatefulWidget {
   const PlantContainer({ Key? key }) : super(key: key);
