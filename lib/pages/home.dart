@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:plantonizer/authentification/authentification_serivce.dart';
+import 'package:plantonizer/authentification/LoginPage.dart';
 class Home extends StatefulWidget {
   const Home({ Key? key }) : super(key: key);
 
@@ -10,12 +11,27 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Plantonizer"),
-        centerTitle: true,
-      ),
-      body: Text("yaay my first first first app xdd"),
+    return StreamBuilder(
+      stream: AuthService().userStream,
+      
+      builder: (context, snapshot){
+
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return const Text("Loading"); 
+        } else if (snapshot.hasError){
+          return const Center(
+            child: Text("error"),
+          );
+        } else if(snapshot.hasData)
+        {
+          return const Center(
+            child: Text("Congrats, logged in"),
+          );
+        } else {
+          return LoginPage();
+        }
+      }
+      
     );
   }
 }
