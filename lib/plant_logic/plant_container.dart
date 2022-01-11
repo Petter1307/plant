@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plantonizer/classes/plant_class.dart';
+import 'package:plantonizer/plant_logic/plant_class.dart';
 
 
 class PlantContainer extends StatefulWidget {
