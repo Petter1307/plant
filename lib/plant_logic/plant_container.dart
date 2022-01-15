@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:plantonizer/plant_logic/plant_class.dart';
 
-
+// This is the container for each plant. 
+// THAT SQUARE ARROUND THE PLANT !
+// Which SQUARE ? WAIT FOR THE FINAL VERSION !!
 class PlantContainer extends StatefulWidget {
   const PlantContainer({ Key? key }) : super(key: key);
 
@@ -19,20 +21,23 @@ class _PlantContainerState extends State<PlantContainer> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-                color: Colors.grey[500],
                 height: 250,
                 width: 250,
-              //   decoration: BoxDecoration(
-              //  // border: Border.all(
-              //   //color: Colors.red[500],        // this is bugged out. doesn`t work as intended.
-              //   // ),
-              //   borderRadius: BorderRadius.circular(20) // use instead of BorderRadius.all(Radius.circular(20))
-              //   ),
-              // decoration: BoxDecoration(
-              //   border: Border(bottom: 2,),
-              // ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  color: Colors.grey[300],
+                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text("Cactus 1"),
+                    Text("ADD PLACE FOR PHOTO"),
+                    Text("Add place for countdown timer for time left to water the plant") 
+                  ],
+                ),
+                ),
               ),
-            ),
           ],
         ),
         ),
