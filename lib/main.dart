@@ -7,8 +7,8 @@ import 'package:plantonizer/authentification/LoginPage.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/', // this should be loading page, for testing purposes now this is the homepage.
+    initialRoute: '/plants', // this should be loading page. For testing purposes this is changed constantly.
     routes: appRoutes,
   ));
 }
-// TODO Modify this page when front end is done. MAKE IT RIGHT AFTER FRONT END.
+// TODO Modify this page when front end is done. MAKE IT RIGHT AFTER FRONT END

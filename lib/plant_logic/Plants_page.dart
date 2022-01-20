@@ -6,6 +6,25 @@ class PlantsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlantContainer();
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Row(
+              children: [
+                PlantContainer(),
+                PlantContainer(),
+              ],
+            ),
+          Row(
+              children: [
+                PlantContainer(),
+                PlantContainer(),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
