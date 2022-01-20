@@ -16,6 +16,7 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: const [
             TextField(
+              
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: "Email",
