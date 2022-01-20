@@ -8,7 +8,7 @@ class PlantContainer extends StatefulWidget {
   @override
   _PlantContainerState createState() => _PlantContainerState();
 }
-
+// TODO CHACNGE THE CONTAINER TO A CARD.
 class _PlantContainerState extends State<PlantContainer> {
   @override
   Widget build(BuildContext context) {

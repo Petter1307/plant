@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plantonizer/plant_logic/plant_container.dart';
+import 'package:plantonizer/plant_logic/plant_card.dart';
 
 class PlantsPage extends StatelessWidget {
   const PlantsPage({ Key? key }) : super(key: key);
