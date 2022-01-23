@@ -7,5 +7,6 @@ class Plant{
   
 
   // TODO get data method form database.
+  // TODO Analyze a better way to create a plant object. 
 
 }
