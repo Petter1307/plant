@@ -40,3 +40,4 @@ class LoginPage extends StatelessWidget {
 }
 
 // TODO Transform this to a form.
+// TODO Redesign login page.

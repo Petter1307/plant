@@ -7,7 +7,7 @@ import 'package:plantonizer/authentification/LoginPage.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/', // this should be loading page. For testing purposes this is changed constantly.
+    initialRoute: '/singup', // this should be loading page. For testing purposes this is changed constantly.
     routes: appRoutes,
   ));
 }
