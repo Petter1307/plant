@@ -4,35 +4,26 @@ import 'package:plantonizer/plant_logic/plant_card.dart';
 class PlantsPage extends StatelessWidget {
   const PlantsPage({ Key? key }) : super(key: key);
 
+// TODO Remake this page with drawers and grid design
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0,
           title: Text("Plants page"),
           centerTitle: true,
         ),
         body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                PlantCard(),
-                PlantCard(),
-              ],
-            ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                PlantCard(),
-                PlantCard(),
-              ],
-            ),
+            PlantCard(),
+            PlantCard(),
           ],
         ),
-      ),
-    );
+        ),
+      );
   }
 }
