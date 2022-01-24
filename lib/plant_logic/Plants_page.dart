@@ -8,18 +8,26 @@ class PlantsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text("Plants page"),
+          centerTitle: true,
+        ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                PlantContainer(),
-                PlantContainer(),
+                PlantCard(),
+                PlantCard(),
               ],
             ),
           Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                PlantContainer(),
-                PlantContainer(),
+                PlantCard(),
+                PlantCard(),
               ],
             ),
           ],

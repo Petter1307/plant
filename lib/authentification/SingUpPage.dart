@@ -88,7 +88,8 @@ class _SingUpState extends State<SingUp> {
 
 
                       //TODO Finis the singup method.
-                      Navigator.pushNamed(context, '/plants');
+                      Navigator.pop(context);
+                      Navigator.popAndPushNamed(context, '/plants');
                     },
                     child: Text("Create Account"),
                   ),

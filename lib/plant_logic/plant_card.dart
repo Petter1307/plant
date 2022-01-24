@@ -2,17 +2,85 @@ import 'package:flutter/material.dart';
 import 'package:plantonizer/plant_logic/plant_class.dart';
 
 
-class PlantContainer extends StatefulWidget {
-  const PlantContainer({ Key? key }) : super(key: key);
+class PlantCard extends StatefulWidget {
+  const PlantCard({ Key? key }) : super(key: key);
 
   @override
-  _PlantContainerState createState() => _PlantContainerState();
+  _PlantCardState createState() => _PlantCardState();
 }
-// TODO CHACNGE THE CONTAINER TO A CARD.
-class _PlantContainerState extends State<PlantContainer> {
+class _PlantCardState extends State<PlantCard> {
   @override
   Widget build(BuildContext context) {
-    return  Padding(                              //Padding arround the container.
+    return Card(
+      color: Colors.blue[300],
+      shadowColor: Colors.red,
+        child: InkWell(
+          onTap: () {
+            print("XD");
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("My Cactus"),
+              Text("Insert image here"),
+              Text("Timer"),
+            ],
+          ),
+        ),
+
+    );
+  }
+}
+/*
+Card(
+          color: Colors.amberAccent,
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children:const [
+                Flexible(
+                  //flex: 3,
+                  child:SizedBox(
+                    height: 30,
+                    width: 30 ,
+                    child: Text("My Cactus"),
+                    )
+                 ),
+                   Flexible(
+                  child:SizedBox(
+                    height: 30,
+                    width: 30 ,
+                    child: Text("Image placeholder"),
+                    )
+                 ),
+                   Flexible(
+                 // flex: 3,
+                  child:SizedBox(
+                    height: 30,
+                    width: 30 ,
+                    child: Text("Timer placeholder"),
+                    )
+                 ),
+                 
+              ],
+            ),
+            onTap: () {
+              print("xd");
+            },
+
+          ),
+
+    );
+*/
+
+
+
+
+/*
+Padding(                              //Padding arround the container.
               padding: const EdgeInsets.all(10.0),
               child: Container(
                 height: 180,
@@ -31,6 +99,5 @@ class _PlantContainerState extends State<PlantContainer> {
                   ],
                 ),
                 ),
-              );
-  }
-}
+              ) 
+*/
