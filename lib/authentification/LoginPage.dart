@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 16,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Row(
                     children: [
                       Expanded(
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                       // TODO Finish the login system
                       Navigator.pushNamed(context,'/plants');
                     },
-                    child: Text("Sing in"),
+                    child: const Text("Sing in"),
                   ),
                 ),
                  const SizedBox(
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Do you want an account ?"),
+                      const Text("Do you want an account ?"),
                       Text(" Sing up",
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
@@ -113,11 +113,25 @@ class _LoginPageState extends State<LoginPage> {
                  const SizedBox(
                   height: 24,
                 ),
-                CircleAvatar(        // This is just a placeholder for google sing in button.
-                  radius: 30,       // TODO Implement the google sing in/up button
-                  child: const Icon(Icons.g_mobiledata,
-                  size: 50,),
-                )
+                Row( // Place holders. 
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CircleAvatar(    
+                      radius: 30,       // TODO Implement the google sing in/up button
+                      child:Icon(Icons.g_mobiledata,
+                      size: 50,),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ), 
+                    CircleAvatar(
+                      radius: 30,
+                      child: Icon(Icons.facebook,
+                      size: 40,
+                      ),
+                    )
+                  ],
+                ),
 
 
 
