@@ -37,6 +37,8 @@ class _SingUpState extends State<SingUp> {
                     children: [
                       Expanded(
                         child: TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          autocorrect: false,
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
                             hintText: 'Email',
@@ -108,7 +110,13 @@ class _SingUpState extends State<SingUp> {
                       )
                     ],
                   ),
-                )
+                ),
+                // TODO Add google sing in button.
+
+
+
+
+
               ], // Main column cildren
             ),
           ),          
