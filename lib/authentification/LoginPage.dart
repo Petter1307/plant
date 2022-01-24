@@ -88,7 +88,6 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () async {
                       // TODO Finish the login system
                       Navigator.popAndPushNamed(context, '/plants');
-                     // Navigator.pushNamed(context,'/plants'); // TODO Find a better way to push plants page.
                     },
                     child: const Text("Sing in"),
                   ),
