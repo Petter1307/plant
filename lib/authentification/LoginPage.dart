@@ -143,6 +143,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-// TODO Transform this to a form.
-// TODO Redesign login page.
