@@ -4,7 +4,8 @@ import 'package:plantonizer/plant_logic/plant_card.dart';
 class PlantsPage extends StatelessWidget {
   const PlantsPage({ Key? key }) : super(key: key);
 
-// TODO Remake this page with drawers and grid design
+// TODO Make it just a list of containers. 
+
 
 
   @override
@@ -17,7 +18,7 @@ class PlantsPage extends StatelessWidget {
           centerTitle: true,
         ),
         body: Column(
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             PlantCard(),
             PlantCard(),

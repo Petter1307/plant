@@ -18,25 +18,36 @@ class _PlantCardState extends State<PlantCard> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-                  height: 180,
-                  width: 180,
+                  height: 150,
+                  width: 400,
                   decoration: BoxDecoration(
+                    boxShadow: [BoxShadow(
+                      color: Colors.green.shade100,
+                      blurRadius: 5,
+                      spreadRadius: 3,
+                    )],
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.tealAccent[400],             
+                    color: Colors.green[50]     
                     ),
                   child: InkWell(
                     onTap: () {
-                      print("xd");
+                      print("xd"); // TODO Add navigator push plant page.
                     },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center, // centered everyting.
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween, // spaced equaly on the vertical axys
-                      children: const [
-                        Text("xdd"),
-                        Text("ADD PLACE FOR PHOTO"),
-                        Text("Timer"),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text("Imageplaceholder"),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text("Plant Name"),
+                            Text("Description placehorder"),
+                            Text("Water in: "),
+                          ],
+                        )
                       ],
-                    ),
+                    )
                   ),
                   ),
     );

@@ -8,7 +8,7 @@ import 'package:plantonizer/plant_logic/plant.dart';
 
 // Added app routes to separate folder.
 var appRoutes={
-    '/' : (context) => LoginPage(),          // Loading page.
+    '/' : (context) => PlantsPage(),          // Loading page.
     '/singup' : (context) => SingUp(),      // Sing up page 
     '/home' : (context) => Home(),         // Home page
     '/plants' : (context) => PlantsPage(),// Page for plants 
