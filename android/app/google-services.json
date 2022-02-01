@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "922208437600",
-    "project_id": "plantonizer",
-    "storage_bucket": "plantonizer.appspot.com"
+    "project_number": "675799852712",
+    "project_id": "plantonizer-e5a6e",
+    "storage_bucket": "plantonizer-e5a6e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:922208437600:android:3b299d78857dc1899d8a05",
+        "mobilesdk_app_id": "1:675799852712:android:98623dbea706283a5ac49d",
         "android_client_info": {
-          "package_name": "com.example.plantonize"
+          "package_name": "com.example.plantonizer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "922208437600-qc8tsvvej0ei56806eph1bteul92j5qp.apps.googleusercontent.com",
+          "client_id": "675799852712-jhsu5chfct2ojpa9c5k72iigsdmv14p6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyChhleq49yUXMt2HO5zQGNpZz7Th4MfjYY"
+          "current_key": "AIzaSyC9tpAKpjg9AwwDm_qnaacphU0NbynQRCQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "922208437600-qc8tsvvej0ei56806eph1bteul92j5qp.apps.googleusercontent.com",
+              "client_id": "675799852712-jhsu5chfct2ojpa9c5k72iigsdmv14p6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

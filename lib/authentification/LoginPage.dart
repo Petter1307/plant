@@ -1,4 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:plantonizer/authentification/authentification_serivce.dart';
+import 'package:provider/src/provider.dart';
+import 'package:plantonizer/helper.dart';
+
+void showSnackbar(BuildContext context, String message) async {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(message),
+        duration: const Duration(milliseconds: 1200),
+      ));
+    }
+
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
@@ -86,8 +98,15 @@ class _LoginPageState extends State<LoginPage> {
                       )
                     ),
                     onPressed: () async {
-                      // TODO Finish the login system
-                      Navigator.popAndPushNamed(context, '/plants');
+                      final result = context.read<AuthenticationService>()
+                      .signIn(
+                        email: emailTextController.text.trim(),
+                        password: passwordTextController.text.trim(),
+                      ); // TODO Change the login system. Use this : https://www.youtube.com/watch?v=wUSkeTaBonA&t=2461s
+                      if(result == "Signed in")
+                      {
+                        Navigator.popAndPushNamed(context, '/plants');
+                      }
                     },
                     child: const Text("Sing in"),
                   ),

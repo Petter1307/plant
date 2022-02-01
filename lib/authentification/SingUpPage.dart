@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:plantonizer/authentification/authentification_serivce.dart';
+import 'package:provider/src/provider.dart';
 
 
 class SingUp extends StatefulWidget {
@@ -85,11 +87,17 @@ class _SingUpState extends State<SingUp> {
                       )
                     ),
                     onPressed: () async {
-
-
-                      //TODO Finis the singup method.
-                      Navigator.pop(context);  // poping login page
+                       final result = await context
+                      .read<AuthenticationService>()
+                       .signUp(
+                         email: emailTextController.text.trim(),
+                         password: passwordTextController.text.trim(),
+                          );
+                      if (result == "Signed up")
+                      {
+                        Navigator.pop(context);  // poping login page
                       Navigator.popAndPushNamed(context, '/plants'); // poping singup page and pushing Plants pag
+                      }
                     },
                     child: Text("Create Account"),
                   ),
