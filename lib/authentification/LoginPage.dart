@@ -98,15 +98,10 @@ class _LoginPageState extends State<LoginPage> {
                       )
                     ),
                     onPressed: () async {
-                      final result = context.read<AuthenticationService>()
-                      .signIn(
-                        email: emailTextController.text.trim(),
-                        password: passwordTextController.text.trim(),
-                      ); // TODO Change the login system. Use this : https://www.youtube.com/watch?v=wUSkeTaBonA&t=2461s
-                      if(result == "Signed in")
-                      {
-                        Navigator.popAndPushNamed(context, '/plants');
-                      }
+                      await context.read<AuthSerice>().singIn1(
+                        email:emailTextController.text.trim(),
+                        password:passwordTextController.text.trim(),
+                        );
                     },
                     child: const Text("Sing in"),
                   ),
