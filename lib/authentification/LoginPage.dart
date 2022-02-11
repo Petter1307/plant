@@ -1,16 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:plantonizer/authentification/authentification_serivce.dart';
-import 'package:provider/src/provider.dart';
-import 'package:plantonizer/helper.dart';
-
-void showSnackbar(BuildContext context, String message) async {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(message),
-        duration: const Duration(milliseconds: 1200),
-      ));
-    }
-
-
+import 'package:plantonizer/authentification/SingUpPage.dart';
+//import 'package:plantonizer/authentification/authentification_serivce.dart';
+import 'package:plantonizer/plant_logic/Plants_page.dart';
+//import 'package:provider/src/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
@@ -23,6 +16,8 @@ class _LoginPageState extends State<LoginPage> {
   
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
+
+  bool isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
   @override
@@ -55,6 +50,14 @@ class _LoginPageState extends State<LoginPage> {
                             hintText: 'Email'
                           ),
                           controller: emailTextController,
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return 'Enter Email Adress';
+                            } else if (!value.contains('@')){
+                              return 'Please enter a valid email adress!';
+                            }
+                              return null;
+                          },
                         )
                       )
                     ],
@@ -69,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Expanded(
                         child: TextFormField(
+                          controller: passwordTextController,
                           enableSuggestions: false,
                           autocorrect: false,
                           obscureText: true,
@@ -76,41 +80,54 @@ class _LoginPageState extends State<LoginPage> {
                             border: UnderlineInputBorder(),
                             hintText: 'Password',
                           ),
+                          validator: (value){
+                            if(value!.isEmpty)
+                            {
+                              return 'Enter Password:';
+                            }else if (value.length < 8){
+                              return 'Password must be at least 8 characters';
+                            }
+                            return null;
+                          },
                         ),
                       )
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Container(
-                  height: 40,
-                  width: 300,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      primary: Colors.indigoAccent,
-                      onPrimary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        side: const BorderSide(color: Colors.indigoAccent),
-                      )
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: isLoading ? CircularProgressIndicator() : Container(
+                    height: 40,
+                    width: 300,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        primary: Colors.indigoAccent,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          side: const BorderSide(color: Colors.indigoAccent),
+                        )
+                      ),
+                      onPressed: () {
+                        if(_formKey.currentState!.validate()){
+                          setState(() {
+                            isLoading = true;
+                          });
+                          singinfunc();
+                        }
+                        
+                      },
+                      child: const Text("Sing in"),
                     ),
-                    onPressed: () async {
-                      await context.read<AuthSerice>().singIn1(
-                        email:emailTextController.text.trim(),
-                        password:passwordTextController.text.trim(),
-                        );
-                    },
-                    child: const Text("Sing in"),
                   ),
                 ),
                  const SizedBox(
                   height: 24,
                 ),
                 InkWell(
-                  onTap: () => Navigator.pushNamed(context,'/singup'),
+                  onTap: () => Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => SingUp())),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -156,4 +173,39 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+
+
+void singinfunc()
+{
+  FirebaseAuth.instance
+    .signInWithEmailAndPassword(
+      email: emailTextController.text,
+      password: passwordTextController.text)
+      .then((result) {
+        isLoading = false;
+        Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => PlantsPage()) 
+        );
+      }).catchError((err){
+        print(err);
+        showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(err.toString()),
+            actions: [
+                ElevatedButton(
+                  child: Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+          );
+        },
+        );
+      });
+}
 }
