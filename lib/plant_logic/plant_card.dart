@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:plantonizer/plant_logic/plant_class.dart';
 
-
-
 class PlantCard extends StatefulWidget {
-  const PlantCard({ Key? key }) : super(key: key);
+  const PlantCard({Key? key}) : super(key: key);
 
   @override
   _PlantCardState createState() => _PlantCardState();
 }
-class _PlantCardState extends State<PlantCard> {
 
+class _PlantCardState extends State<PlantCard> {
   final int cd = 12; // to be changed later with plant class object
 
   @override
@@ -18,38 +16,35 @@ class _PlantCardState extends State<PlantCard> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-                  height: 150,
-                  width: 400,
-                  decoration: BoxDecoration(
-                    boxShadow: [BoxShadow(
-                      color: Colors.green.shade100,
-                      blurRadius: 5,
-                      spreadRadius: 3,
-                    )],
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.green[50]     
-                    ),
-                  child: InkWell(
-                    onTap: () {
-                      print("xd"); // TODO Add navigator push plant page.
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text("Imageplaceholder"),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text("Plant Name"),
-                            Text("Description placehorder"),
-                            Text("Water in: "),
-                          ],
-                        )
-                      ],
-                    )
-                  ),
-                  ),
+        height: 150,
+        width: 400,
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: Colors.green.shade100,
+            blurRadius: 5,
+            spreadRadius: 3,
+          )
+        ], borderRadius: BorderRadius.circular(20), color: Colors.green[50]),
+        child: InkWell(
+            onTap: () {
+              print("xd"); // TODO Add navigator push plant page.
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text("Imageplaceholder"),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text("Plant Name"),
+                    Text("Description placehorder"),
+                    Text("Water in: "),
+                  ],
+                )
+              ],
+            )),
+      ),
     );
   }
 }

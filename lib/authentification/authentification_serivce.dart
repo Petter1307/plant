@@ -1,108 +1,52 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:plantonizer/models/UserModel.dart';
 
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter/material.dart';
-// import 'package:plantonizer/plant_logic/Plants_page.dart';
-// import 'package:plantonizer/routes.dart';
-// import 'dart:async';
+class AuthService {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  UserModel? _userModel(User? user) {
+    if (user != null) {
+      return UserModel(uid: user.uid);
+    } else {
+      return null;
+    }
+  }
 
-// class AuthenticationService {
+  Future singInAnon() async {
+    try {
+      UserCredential result = await _auth.signInAnonymously();
+      User? user = result.user;
+      return _userModel(user);
+    } catch (e) {
+      return null;
+    }
+  }
 
-//   // 1
-//   final FirebaseAuth _firebaseAuth;
+  // Auth change user stream
+  Stream<UserModel?> get onAuthStateChanged {
+    return _auth
+        .authStateChanges()
+        // .map((User? user) => _userModel(user));
+        .map(_userModel);
+  }
 
-//   AuthenticationService(this._firebaseAuth);
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
-//   // 2
-//   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
-
-
-//   // 3
-//   Future<String?> signIn({required String email, required String password}) async {
-//     try {
-//       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-//       return "Signed in";
-//     } on FirebaseAuthException catch(e) {
-//       return e.message;
-//     }
-//   }
-//   // 4
-//   Future<String?> signUp({required String email, required String password}) async {
-//     try {
-//       await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-//       return "Signed up";
-//     } on FirebaseAuthException catch(e) {
-//       return e.message;
-//     }
-//   }
-
-//   // 5
-//   Future<String?> signOut() async {
-//     try {
-//       await _firebaseAuth.signOut();
-//       return "Signed out";
-//     } on FirebaseAuthException catch(e) {
-//       return e.message;
-//     }
-//   }
-
-// // 6
-//  User? getUser() {
-//     try {
-//       return _firebaseAuth.currentUser;
-//     } on FirebaseAuthException {
-//       return null;
-//     }
-//   }
-
-// }
-// class AuthService 
-// {
-//   final FirebaseAuth auth;
-
-//   AuthService(this.auth);
-
-//   Stream<User?> get authStateChanges => auth.authStateChanges();
-
-
-//   Future<void> singUp({required String email,required String password}) async
-//   {
-//     try{
-//       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-//     }on FirebaseAuthException catch(e){
-//       if(e.code == 'week-password'){
-//         print("The provided password is too weak");
-//       }else if(e.code == 'email-already-in-use'){
-//         print("The account already exists for that email");
-//       }
-//     } catch(e){
-//       print(e);
-//     }
-
-//   }
-  
-//   Future<void> singIn({required String email,required String password}) async
-//   {
-//     try {
-//       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-//     } on FirebaseAuthException catch(e){
-//       if(e.code == 'user-not-found'){
-//         print("No user found for that email");
-//       }else if(e.code == 'wrong-password'){
-//         print("Wrong password providede for that user");
-//       }
-//     }catch(e){
-//       print(e);
-//     }
-//   }
-
-//    User? getUser() {
-//     try {
-//       return auth.currentUser;
-//     } on FirebaseAuthException {
-//       return null;
-//     }
-//   }
-
-// }
-
+  // sign in with email and password
+  Future singInEP(String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+}
