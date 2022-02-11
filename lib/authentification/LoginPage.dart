@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plantonizer/authentification/authentification_serivce.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
@@ -13,6 +14,9 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordTextController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +136,38 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ],
                 ),
+                SizedBox(height: 24,),
+               
+               
+               Container(
+                  height: 40,
+                  width: 300,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      primary: Colors.indigoAccent,
+                      onPrimary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        side: const BorderSide(color: Colors.indigoAccent),
+                      )
+                    ),
+                    onPressed: () async {
+                      dynamic result = await _auth.singInAnon();
 
+                      if(result == null)
+                      {
+                        print("Error singning in");
+                      }else{
+                        print("Singed in");
+                        print(result);
+                      }
+
+                      Navigator.popAndPushNamed(context, '/plants');
+                    },
+                    child: const Text("Sing Anon"),
+                  ),
+                ),
 
 
               ],

@@ -4,11 +4,12 @@ import 'package:plantonizer/home.dart';
 import 'package:plantonizer/authentification/LoginPage.dart';
 import 'package:plantonizer/plant_logic/Plants_page.dart';
 import 'package:plantonizer/plant_logic/plant.dart';
+import 'package:plantonizer/wrapper.dart';
 
 
 // Added app routes to separate folder.
 var appRoutes={
-    '/' : (context) => PlantsPage(),          // Loading page.
+    '/' : (context) => Wrapper(),          // Loading page.
     '/singup' : (context) => SingUp(),      // Sing up page 
     '/home' : (context) => Home(),         // Home page
     '/plants' : (context) => PlantsPage(),// Page for plants 
