@@ -12,9 +12,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController emailTextController = TextEditingController();
-  TextEditingController passwordTextController = TextEditingController();
-
   final AuthService _authService = AuthService();
 
   String email = '';

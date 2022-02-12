@@ -13,13 +13,13 @@ class SingUp extends StatefulWidget {
 }
 
 class _SingUpState extends State<SingUp> {
-  bool isLoading = false;
+  final AuthService _authService = AuthService();
 
-  TextEditingController emailTextController = TextEditingController();
-  TextEditingController passwordTextController = TextEditingController();
+  String email = '';
+  String password = '';
+  String error = '';
 
   final _formKey = GlobalKey<FormState>();
-  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,11 @@ class _SingUpState extends State<SingUp> {
                     children: [
                       Expanded(
                         child: TextFormField(
+                          onChanged: (value) {
+                            setState(() {
+                              email = value;
+                            });
+                          },
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Enter Email Adress';
@@ -56,7 +61,6 @@ class _SingUpState extends State<SingUp> {
                             border: UnderlineInputBorder(),
                             hintText: 'Email',
                           ),
-                          controller: emailTextController,
                         ),
                       ),
                     ],
@@ -83,7 +87,11 @@ class _SingUpState extends State<SingUp> {
                           }
                           return null;
                         },
-                        controller: passwordTextController,
+                        onChanged: (value) {
+                          setState(() {
+                            password = value;
+                          });
+                        },
                       ))
                     ],
                   ),
@@ -94,28 +102,23 @@ class _SingUpState extends State<SingUp> {
                 Container(
                   height: 40,
                   width: 300,
-                  child: isLoading
-                      ? CircularProgressIndicator()
-                      : ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              elevation: 6,
-                              primary: Colors.indigoAccent,
-                              onPrimary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                side: const BorderSide(
-                                    color: Colors.indigoAccent),
-                              )),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              setState(() {
-                                isLoading = true;
-                              });
-                              register();
-                            }
-                          },
-                          child: Text("Create Account"),
-                        ),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        elevation: 6,
+                        primary: Colors.indigoAccent,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          side: const BorderSide(color: Colors.indigoAccent),
+                        )),
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        dynamic result =
+                            await _authService.SingupEP(email, password);
+                      }
+                    },
+                    child: Text("Create Account"),
+                  ),
                 ),
                 const SizedBox(
                   height: 24,
@@ -137,8 +140,7 @@ class _SingUpState extends State<SingUp> {
                     ],
                   ),
                 ),
-                // TODO Add google sing in button.
-              ], // Main column cildren
+              ],
             ),
           ),
         ),
@@ -146,39 +148,8 @@ class _SingUpState extends State<SingUp> {
     );
   }
 
-  void register() {
-    auth
-        .createUserWithEmailAndPassword(
-            email: emailTextController.text,
-            password: passwordTextController.text)
-        .then((result) {
-      isLoading = false;
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => PlantsPage()));
-    }).catchError((err) {
-      showDialog(
-          context: context,
-          builder: (BuildContext) {
-            return AlertDialog(
-              title: Text("Error"),
-              content: Text(err.toString()),
-              actions: [
-                TextButton(
-                  child: Text("Ok"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          });
-    });
-
-    @override
-    void dispose() {
-      super.dispose();
-      emailTextController.dispose();
-      passwordTextController.dispose();
-    }
+  @override
+  void dispose() {
+    super.dispose();
   }
 }
